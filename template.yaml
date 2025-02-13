@@ -1,0 +1,41 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  AWS SAM Template for Hello World TypeScript function
+
+Resources:
+  ContentApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Stage
+
+  HelloWorldFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: source/
+      Handler: src/helloWorld.handler
+      Runtime: nodejs18.x
+      MemorySize: 128
+      Timeout: 30
+      Policies:
+        - AWSLambdaBasicExecutionRole
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ContentApi
+            Path: /hello
+            Method: GET
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: false
+        Target: "es2020"
+        Sourcemap: true
+        EntryPoints:
+          - handlers/helloWorld.ts
+
+Outputs:
+  HelloWorldFunction:
+    Description: "Hello World Lambda Function ARN"
+    Value: !GetAtt HelloWorldFunction.Arn

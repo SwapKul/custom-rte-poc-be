@@ -1,0 +1,5 @@
+{
+  "watch": ["src", "template.yaml"],
+  "ext": "ts,yaml",
+  "exec": "sh scripts/build.sh"
+}

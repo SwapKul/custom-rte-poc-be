@@ -1,0 +1,19 @@
+{
+  "name": "custom-rte",
+  "version": "1.0.0",
+  "main": "src/handlers/helloWorld.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "sh scripts/build.sh",
+    "deploy": "sam deploy --guided",
+    "dev": "concurrently \"sam local start-api\" \"nodemon\""
+  },
+  "author": "swapnilKulshreshtha",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "esbuild": "^0.25.0",
+    "nodemon": "^3.1.9"
+  }
+}
